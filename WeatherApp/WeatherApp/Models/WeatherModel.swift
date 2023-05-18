@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: WeatherCurrent
 struct WeatherCurrent: Codable {
     let coord: Coord
     let weather: [WeatherCurrentDay]
@@ -23,7 +24,7 @@ struct WeatherCurrent: Codable {
 }
 
 // MARK: - Clouds
-struct Clouds: Codable {
+struct Clouds: Hashable, Codable {
     let all: Int
 }
 
@@ -75,7 +76,7 @@ struct WindCurrent: Codable {
     let deg: Int
 }
 
-// MARK: - ModalApp
+// MARK: - WeatherAllDay
 struct WeatherAllDay: Codable {
     let cod: String
     let message: Int
@@ -97,8 +98,7 @@ struct City: Codable {
 }
 
 // MARK: - List
-struct List: Identifiable, Codable {
-    let id = UUID().uuidString
+struct List: Hashable, Codable {
     let dt: Int
     let main: MainClass
     let weather: [Weather]
@@ -125,7 +125,7 @@ struct List: Identifiable, Codable {
 }
 
 // MARK: - MainClass
-struct MainClass: Codable {
+struct MainClass:Hashable, Codable {
     let temp: Double
     let feelsLike: Double
     let tempMin: Double
@@ -150,7 +150,7 @@ struct MainClass: Codable {
 }
 
 // MARK: - Rain
-struct Rain: Codable {
+struct Rain: Hashable, Codable {
     let the3H: Double
 
     enum CodingKeys: String, CodingKey {
@@ -159,7 +159,7 @@ struct Rain: Codable {
 }
 
 // MARK: - Sys
-struct Sys: Codable {
+struct Sys: Hashable, Codable {
     let pod: Pod
 }
 
@@ -169,13 +169,14 @@ enum Pod: String, Codable {
 }
 
 // MARK: - Weather
-struct Weather: Codable {
+struct Weather: Hashable, Codable {
     let id: Int
     let main: MainEnum
     let description: String
     let icon: String
 }
 
+// MARK: MainEnum
 enum MainEnum: String, Codable {
     case clear = "Clear"
     case clouds = "Clouds"
@@ -183,7 +184,7 @@ enum MainEnum: String, Codable {
 }
 
 // MARK: - Wind
-struct Wind: Codable {
+struct Wind: Hashable, Codable {
     let speed: Double
     let deg: Int
     let gust: Double

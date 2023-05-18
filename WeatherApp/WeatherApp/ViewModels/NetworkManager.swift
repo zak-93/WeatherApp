@@ -40,10 +40,6 @@ enum NetworkError: Error {
 
 final class NetworkManager {
     
-    
-    
-    
-    
     func fetchCurrentDay(from url: URL, complition: @escaping(Result<WeatherCurrent, NetworkError>) ->()) {
         AF.request(url)
             .validate()
